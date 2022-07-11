@@ -1,374 +1,93 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <el-button type="primary" @click="dialogShow">打开弹框</el-button>
+  <div id="hello-world-container">
+    <!-- <div>{{ arr }}</div> -->
 
-    <el-dialog title="样例弹框" :visible.sync="dialogVisible" width="600px">
-     
-      <div :style="`max-height:316px;overflow:auto;`">
-         <el-table :data="gridDataComp" height="300">
-            <el-table-column property="date" label="日期" width="150"></el-table-column>
-            <el-table-column property="name" label="姓名" width="200"></el-table-column>
-            <el-table-column property="address" label="地址"></el-table-column>
-          </el-table>
-      </div>
-      <el-pagination
-          background
-          @current-change="handleCurrentChange"
-          :current-page.sync="pageInfo.pageNo"
-          :page-size.sync="pageInfo.pageSize"
-          :page-sizes="[10, 20, 50, 100, 200]"
-          layout="prev, pager, next"
-          :total="gridData.length">
-      </el-pagination>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogCancel">关 闭</el-button>
-        <el-button type="primary" @click="dialogCancel">确 定</el-button>
-      </span>
-    </el-dialog>
+    <div class="leftDiv"></div>
+    <div class="centerDiv"></div>
+    <div class="rightDiv"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
-      pageInfo: {
-        pageNo: 1,
-        pageSize: 30,
-        total: 0
-      },
-      gridData: [{
-          date: '2016-05-02',
-          name: '王小虎111',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎222',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎333',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎444',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '555',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎666',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎777',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎888',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎999',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎20',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎21',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎213',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎11',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎34',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎34',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎232',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎34',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎12',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎34',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎12',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎23',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-1205-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },{
-          date: '2016-05-01',
-          name: '王小虎123',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
-        dialogVisible: false,
-    }
+      arr: [2, 1, 4, 5, 6, 9, 3, 7, 8],
+    };
   },
-  computed: {
-    gridDataComp() {
-      return this.gridData.slice((this.pageInfo.pageNo-1)*this.pageInfo.pageSize,this.pageInfo.pageNo*this.pageInfo.pageSize)
-    }
+  mounted() {
+    this.arr = [...this.insertSort(this.arr)];
   },
   methods: {
-    dialogShow() {
-      this.dialogVisible = true;
+    // 插入排序
+    insertSort(arr) {
+      for (var i = 1; i < arr.length; i++) {
+        var curValue = arr[i];
+        var j = i - 1;
+        while (j >= 0 && curValue < arr[j]) {
+          arr[j + 1] = arr[j];
+          j--;
+        }
+        arr[j + 1] = curValue;
+      }
+      return arr;
     },
-    dialogCancel() {
-      this.dialogVisible = false;
+    //选择排序
+    selectionSort(arr) {
+      var minIndex, temp;
+      for (var i = 0; i < arr.length - 1; i++) {
+        minIndex = i;
+        for (var j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[minIndex]) {
+            minIndex = j;
+          }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+      }
+      return arr;
     },
-    handleCurrentChange(val) {
-      console.log(val)
-      this.pageInfo.pageNo = val;
-    }
-  }
-}
+    // 冒泡排序
+    bubbleSort(arr) {
+      for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr.length - 1 - i; j++) {
+          if (arr[j] > arr[j + 1]) {
+            var temp = arr[j + 1];
+            arr[j + 1] = arr[j];
+            arr[j] = temp;
+          }
+        }
+      }
+      return arr;
+    },
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 
-   /*修改滚动条样式*/
-  .content-class::-webkit-scrollbar {
-      width:10px;
-      height:10px;
-    }
-  .content-class::-webkit-scrollbar-track {
-      background: rgb(239, 239, 239);
-      border-radius:2px;
-    }
-  .content-class::-webkit-scrollbar-thumb {
-      background: rgba(0,0,0,0.10);
-      border-radius:10px;
-    }
-  .content-class::-webkit-scrollbar-thumb:hover {
-      background: rgba(0,0,0,0.25);
+<style lang="scss">
+
+  .leftDiv, .rightDiv {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+  }
+  .leftDiv {
+    background: red;
+    left: 0;
+  }
+  .rightDiv {
+    background: yellow;
+    right: 0;
+  }
+  .centerDiv {
+    background: pink;
+    height: 200px;
   }
 </style>
